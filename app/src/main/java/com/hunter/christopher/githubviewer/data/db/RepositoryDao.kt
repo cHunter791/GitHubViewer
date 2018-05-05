@@ -1,5 +1,6 @@
 package com.hunter.christopher.githubviewer.data.db
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
@@ -12,6 +13,9 @@ interface RepositoryDao {
 
     @Query("SELECT * FROM repositories")
     fun getRepositoriesForUser(): Flowable<List<Repository>>
+
+    @Query("SELECT * FROM repositories WHERE id LIKE :id")
+    fun getRepository(id: Long): LiveData<Repository>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(repository: Repository)

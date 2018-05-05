@@ -1,14 +1,14 @@
 package com.hunter.christopher.githubviewer.data.repositories
 
 import android.annotation.SuppressLint
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.hunter.christopher.githubviewer.data.model.Repository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
 
-class GitHubRepository @Inject constructor(private val localRepository: GitHubLocalRepository,
-                                           private val remoteRepository: GitHubRemoteRepository) {
+class GitHubRepository(private val localRepository: GitHubLocalRepository,
+                       private val remoteRepository: GitHubRemoteRepository) {
 
     @SuppressLint("CheckResult")
     fun getUserRepositories(userName: String): MutableLiveData<Resource<List<Repository>>> {
@@ -32,4 +32,6 @@ class GitHubRepository @Inject constructor(private val localRepository: GitHubLo
 
         return data
     }
+
+    fun getRepository(id: Long): LiveData<Repository> = localRepository.getRepository(id)
 }

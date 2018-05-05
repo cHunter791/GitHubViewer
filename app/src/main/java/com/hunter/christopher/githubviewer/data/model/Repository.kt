@@ -16,7 +16,7 @@ data class Repository(
         val name: String,
         @SerializedName("description")
         @ColumnInfo(name = "description")
-        val description: String,
+        val description: String?,
         @SerializedName("created_at")
         @ColumnInfo(name = "createdAt")
         val createdAt: String,
@@ -28,7 +28,7 @@ data class Repository(
         val stars: Int,
         @SerializedName("language")
         @ColumnInfo(name = "language")
-        val language: String,
+        val language: String?,
         @SerializedName("open_issues")
         @ColumnInfo(name = "numIssues")
         val issues: Int)

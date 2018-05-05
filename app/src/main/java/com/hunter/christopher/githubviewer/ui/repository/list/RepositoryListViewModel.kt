@@ -8,13 +8,11 @@ import com.hunter.christopher.githubviewer.data.model.Repository
 import com.hunter.christopher.githubviewer.data.repositories.GitHubRepository
 import com.hunter.christopher.githubviewer.data.repositories.Resource
 import com.hunter.christopher.githubviewer.ui.base.BaseViewModel
-import javax.inject.Inject
 
-class RepositoryListViewModel @Inject constructor(private val gitHubRepository: GitHubRepository) : BaseViewModel() {
+class RepositoryListViewModel(private val gitHubRepository: GitHubRepository) : BaseViewModel() {
 
     val searchName = MutableLiveData<String>()
     private val searchTerm = MutableLiveData<String>()
-
     val loading = ObservableBoolean(false)
 
     var repositoryResult: LiveData<Resource<List<Repository>>> = Transformations.switchMap(searchTerm) {

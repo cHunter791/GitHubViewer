@@ -1,26 +1,14 @@
 package com.hunter.christopher.githubviewer
 
-import android.app.Activity
 import android.app.Application
-import com.hunter.christopher.githubviewer.di.DaggerAppComponent
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
-import javax.inject.Inject
+import com.hunter.christopher.githubviewer.di.gitHubViewModules
+import org.koin.android.ext.android.startKoin
 
-class MainApplication : Application(), HasActivityInjector {
-
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+class MainApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
 
-        DaggerAppComponent.builder()
-                .application(this)
-                .build()
-                .inject(this)
+        startKoin(this, gitHubViewModules)
     }
-
-    override fun activityInjector(): AndroidInjector<Activity> = dispatchingAndroidInjector
 }

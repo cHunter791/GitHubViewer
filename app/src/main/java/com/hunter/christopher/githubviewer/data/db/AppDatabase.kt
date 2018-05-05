@@ -5,7 +5,7 @@ import android.arch.persistence.room.RoomDatabase
 import com.hunter.christopher.githubviewer.data.model.Owner
 import com.hunter.christopher.githubviewer.data.model.Repository
 
-@Database(entities = [Repository::class, Owner::class], version = 1, exportSchema = false)
+@Database(entities = [Repository::class, Owner::class], version = 4, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun repositoryDao(): RepositoryDao
 }

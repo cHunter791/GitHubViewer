@@ -9,17 +9,14 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
-import dagger.android.AndroidInjection
 
-abstract class BaseActivity<B : ViewDataBinding, V : BaseViewModel> : AppCompatActivity() {
+abstract class BaseActivity<B : ViewDataBinding> : AppCompatActivity() {
 
     lateinit var binding: B
-    lateinit var viewModel: V
     abstract var layoutId: Int
     abstract var bindingVariable: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        performDependencyInjection()
         super.onCreate(savedInstanceState)
         performDataBinding()
     }
@@ -30,10 +27,6 @@ abstract class BaseActivity<B : ViewDataBinding, V : BaseViewModel> : AppCompatA
             binding.setLifecycleOwner(this)
             binding.executePendingBindings()
         }.root
-    }
-
-    private fun performDependencyInjection() {
-        AndroidInjection.inject(this)
     }
 
     @TargetApi(Build.VERSION_CODES.M)

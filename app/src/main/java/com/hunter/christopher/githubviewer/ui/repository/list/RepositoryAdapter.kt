@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.hunter.christopher.githubviewer.data.model.Repository
 import com.hunter.christopher.githubviewer.databinding.ListItemRepositoryBinding
 
-class RepositoryAdapter(private var items: ArrayList<Repository>)
+class RepositoryAdapter(private var items: ArrayList<Repository>, private var listener: OnItemClickListener)
     : RecyclerView.Adapter<RepositoryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,14 +25,19 @@ class RepositoryAdapter(private var items: ArrayList<Repository>)
         }
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position])
+    interface OnItemClickListener {
+
+        fun onItemClick(repositoryId: Long)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position], listener)
 
     class ViewHolder(private var binding: ListItemRepositoryBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(repository: Repository) {
+        fun bind(repository: Repository, listener: OnItemClickListener) {
             binding.repository = repository
-
+            binding.root.setOnClickListener({ listener.onItemClick(repository.id) })
             binding.executePendingBindings()
         }
     }

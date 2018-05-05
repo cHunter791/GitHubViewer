@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.hunter.christopher.githubviewer.ui.repository.detail.RepositoryDetailViewModel"/>
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/repositoryDetailName"
+            style="@style/Text.TitleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{viewModel.repositoryResult.name}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Foo Bar Repo"/>
+
+        <TextView
+            android:id="@+id/repositoryDetailCreatedAt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@{viewModel.repositoryResult.createdAt}"
+            app:layout_constraintLeft_toLeftOf="@id/repositoryDetailName"
+            app:layout_constraintTop_toBottomOf="@id/repositoryDetailName"
+            tools:text="Created At : 01/01/2018"/>
+
+        <TextView
+            android:id="@+id/repositoryDetailUpdatedAt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{viewModel.repositoryResult.updatedAt}"
+            app:layout_constraintLeft_toLeftOf="@id/repositoryDetailCreatedAt"
+            app:layout_constraintTop_toBottomOf="@id/repositoryDetailCreatedAt"
+            tools:text="Updated At : 01/01/2018"/>
+
+        <TextView
+            android:id="@+id/repositoryDetailStars"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:gravity="end"
+            android:text="@{viewModel.repositoryResult.stars + ``}"
+            app:layout_constraintBottom_toBottomOf="@id/repositoryDetailCreatedAt"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/repositoryDetailCreatedAt"
+            tools:text="Stars : 10"/>
+
+        <TextView
+            android:id="@+id/repositoryDetailIssues"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="@{viewModel.repositoryResult.issues + ``}"
+            app:layout_constraintBottom_toBottomOf="@id/repositoryDetailUpdatedAt"
+            app:layout_constraintRight_toRightOf="@id/repositoryDetailStars"
+            app:layout_constraintTop_toTopOf="@id/repositoryDetailUpdatedAt"
+            tools:text="Issues : 10"/>
+
+        <ScrollView
+            android:id="@+id/repositoryDetailDescriptionScroll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/repositoryDetailUpdatedAt">
+
+            <TextView
+                android:id="@+id/repositoryDetailDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.repositoryResult.description}"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+
+        </ScrollView>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
