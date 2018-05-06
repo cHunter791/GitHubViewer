@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@{viewModel.repositoryResult.name}"
+            android:text="@{viewModel.repositoryResult.data.name}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Foo Bar Repo"/>
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@{viewModel.repositoryResult.createdAt}"
+            android:text="@{viewModel.repositoryResult.data.createdAt}"
             app:layout_constraintLeft_toLeftOf="@id/repositoryDetailName"
             app:layout_constraintTop_toBottomOf="@id/repositoryDetailName"
             tools:text="Created At : 01/01/2018"/>
@@ -43,7 +43,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@{viewModel.repositoryResult.updatedAt}"
+            android:text="@{viewModel.repositoryResult.data.updatedAt}"
             app:layout_constraintLeft_toLeftOf="@id/repositoryDetailCreatedAt"
             app:layout_constraintTop_toBottomOf="@id/repositoryDetailCreatedAt"
             tools:text="Updated At : 01/01/2018"/>
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:gravity="end"
-            android:text="@{viewModel.repositoryResult.stars + ``}"
+            android:text="@{viewModel.repositoryResult.data.stars + ``}"
             app:layout_constraintBottom_toBottomOf="@id/repositoryDetailCreatedAt"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/repositoryDetailCreatedAt"
@@ -65,7 +65,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:text="@{viewModel.repositoryResult.issues + ``}"
+            android:text="@{viewModel.repositoryResult.data.issues + ``}"
             app:layout_constraintBottom_toBottomOf="@id/repositoryDetailUpdatedAt"
             app:layout_constraintRight_toRightOf="@id/repositoryDetailStars"
             app:layout_constraintTop_toTopOf="@id/repositoryDetailUpdatedAt"
@@ -86,7 +86,7 @@
                 android:id="@+id/repositoryDetailDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.repositoryResult.description}"
+                android:text="@{viewModel.repositoryResult.data.description}"
                 tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
 
         </ScrollView>

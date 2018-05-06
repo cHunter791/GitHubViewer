@@ -13,7 +13,7 @@ import com.hunter.christopher.githubviewer.data.repositories.GitHubRepository
 import com.hunter.christopher.githubviewer.ui.navigation.Navigator
 import com.hunter.christopher.githubviewer.ui.repository.detail.RepositoryDetailViewModel
 import com.hunter.christopher.githubviewer.ui.repository.list.RepositoryListViewModel
-import io.reactivex.schedulers.Schedulers
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -21,7 +21,6 @@ import org.koin.android.architecture.ext.viewModel
 import org.koin.dsl.module.Module
 import org.koin.dsl.module.applicationContext
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.*
@@ -66,7 +65,7 @@ fun retrofit(gson: Gson, okHttpClient: OkHttpClient, baseUrl: String): Retrofit 
     return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(okHttpClient)
             .build()
 }
